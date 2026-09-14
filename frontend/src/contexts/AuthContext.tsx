@@ -14,7 +14,7 @@ interface User {
 interface AuthContextType {
   user: User | null;
   token: string | null;
-  login: (token: string) => void;
+  login: (token: string) => Promise<void>;
   logout: () => void;
   loading: boolean;
 }
@@ -42,9 +42,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [token]);
 
-  const login = (newToken: string) => {
+  const login = async (newToken: string) => {
     localStorage.setItem('token', newToken);
     setToken(newToken);
+    try {
+      const res = await api.get('/api/v1/auth/me');
+      setUser(res.data);
+    } catch {
+      // Fallback
+    }
   };
 
   const logout = () => {

@@ -18,6 +18,7 @@ import {
   Workflow,
   Sparkles,
 } from 'lucide-react';
+import { cleanServiceName } from '../utils/formatters';
 
 interface AgentInfo {
   id: string;
@@ -116,7 +117,7 @@ export default function ResearchPipeline() {
                 Multi-Agent Research Pipeline
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                Phase 14 — End-to-End Orchestration & Verification Lifecycle
+                End-to-End Orchestration & Verification Lifecycle
               </p>
             </div>
           </div>
@@ -142,7 +143,7 @@ export default function ResearchPipeline() {
               {isSyncing ? (
                 <>
                   <RefreshCw size={15} className="animate-spin" />
-                  <span>Syncing 13 Agents...</span>
+                  <span>Syncing Pipeline Services...</span>
                 </>
               ) : (
                 <>
@@ -234,15 +235,15 @@ export default function ResearchPipeline() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Activity size={18} className="text-blue-600" /> 13-Agent Autonomous Execution Flow
+            <Activity size={18} className="text-blue-600" /> Autonomous Execution Flow
           </h2>
           <span className="text-xs text-slate-500 font-medium">
-            Phases 1–14 Connected & Operational
+            All Services Connected & Operational
           </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {agents.map((agent, i) => {
+          {agents.map((agent) => {
             const isReviewAgent = agent.id === 'agent-10' && health && health.pending_reviews_count > 0;
             return (
               <div
@@ -256,11 +257,11 @@ export default function ResearchPipeline() {
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2.5">
                     <div className="w-7 h-7 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 font-black text-xs flex items-center justify-center shadow-2xs">
-                      {i + 1}
+                      <Activity size={13} className="text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-sm text-slate-900">{agent.name}</h3>
-                      <span className="text-[10px] font-semibold text-slate-400">Phase {agent.phase}</span>
+                      <h3 className="font-bold text-sm text-slate-900">{cleanServiceName(agent.name)}</h3>
+                      <span className="text-[10px] font-semibold text-slate-400">Pipeline Service</span>
                     </div>
                   </div>
 

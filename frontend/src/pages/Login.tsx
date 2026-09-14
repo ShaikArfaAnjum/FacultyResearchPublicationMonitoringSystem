@@ -16,8 +16,8 @@ import {
 } from 'lucide-react';
 
 export default function Login() {
-  const [email, setEmail] = useState('admin@vignan.ac.in');
-  const [password, setPassword] = useState('admin');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
@@ -32,11 +32,11 @@ export default function Login() {
 
     try {
       const params = new URLSearchParams();
-      params.append('username', email);
+      params.append('username', email.trim());
       params.append('password', password);
 
       const res = await api.post('/api/v1/auth/login', params);
-      login(res.data.access_token);
+      await login(res.data.access_token);
       navigate('/');
     } catch (err: any) {
       setError('Invalid email or password. Please check your credentials.');
@@ -269,6 +269,37 @@ export default function Login() {
                 </>
               )}
             </button>
+
+            {/* Quick Demo Credentials */}
+            <div className="pt-1">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center mb-1.5">
+                Quick Test Accounts (Click to autofill)
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmail('hodcse@vignan.ac.in');
+                    setPassword('faculty123');
+                  }}
+                  className="px-2.5 py-1.5 bg-blue-50 hover:bg-blue-100/80 text-blue-700 border border-blue-200/80 rounded-lg text-[11px] font-semibold text-center transition-all shadow-xs flex flex-col items-center"
+                >
+                  <span className="font-bold">Dr. Venkatrama</span>
+                  <span className="text-[9px] text-blue-500 font-normal">Faculty (CSE)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmail('admin@vignan.ac.in');
+                    setPassword('admin');
+                  }}
+                  className="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200 rounded-lg text-[11px] font-semibold text-center transition-all shadow-xs flex flex-col items-center"
+                >
+                  <span className="font-bold">System Admin</span>
+                  <span className="text-[9px] text-slate-500 font-normal">Research Admin</span>
+                </button>
+              </div>
+            </div>
 
             {/* Divider */}
             <div className="relative flex items-center py-2">

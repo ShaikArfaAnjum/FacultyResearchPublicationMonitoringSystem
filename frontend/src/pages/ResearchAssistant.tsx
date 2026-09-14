@@ -40,8 +40,8 @@ export default function ResearchAssistant() {
     {
       id: 'welcome-1',
       sender: 'assistant',
-      text: "### Welcome to the Vignan Research Intelligence Assistant (Agent 13)\n\nI can answer questions regarding your **publications, citation metrics, verification status, h-index, research specializations, and NAAC/NIRF accreditation evidence**.\n\nAll my responses are **100% grounded in verified system data** with provenance tracking.",
-      provenance: "VFSTR Multi-Agent Research Platform (Agents 1–12)",
+      text: "### Welcome to the Vignan Research Intelligence Assistant\n\nI can answer questions regarding your **publications, citation metrics, verification status, h-index, research specializations, and NAAC/NIRF accreditation evidence**.\n\nAll my responses are **100% grounded in verified system data** with provenance tracking.",
+      provenance: "VFSTR Research Intelligence Platform",
       suggested_actions: [
         "What are my top cited publications?",
         "What is my current h-index & citation impact?",
@@ -228,7 +228,7 @@ export default function ResearchAssistant() {
             <div className="flex items-center gap-2">
               <h1 className="text-lg font-bold text-slate-900">Research Intelligence Assistant</h1>
               <span className="px-2 py-0.5 bg-blue-100 text-blue-700 font-bold text-[10px] rounded-full uppercase tracking-wider">
-                Agent 13
+                AI Assistant
               </span>
             </div>
             <p className="text-xs text-slate-500 mt-0.5">

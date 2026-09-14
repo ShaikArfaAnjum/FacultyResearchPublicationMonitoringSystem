@@ -1,18 +1,18 @@
 export default function AgentCenter() {
   const agents = [
-    { name: 'Faculty Identity Agent', phase: 2, description: 'Manages faculty profiles and external identifiers', status: 'idle' },
-    { name: 'Affiliation Intelligence Agent', phase: 2, description: 'Learns institutional affiliation variants', status: 'idle' },
-    { name: 'Publication Discovery Agent', phase: 4, description: 'Searches research sources for new publications', status: 'idle' },
-    { name: 'Metadata Normalization Agent', phase: 5, description: 'Standardizes publication metadata', status: 'idle' },
-    { name: 'Deduplication Agent', phase: 5, description: 'Identifies and merges duplicate publications', status: 'idle' },
-    { name: 'Faculty Attribution Agent', phase: 6, description: 'Links publications to VFSTR faculty', status: 'idle' },
-    { name: 'Metadata Enrichment Agent', phase: 7, description: 'Adds journal quality metrics and indexing data', status: 'idle' },
-    { name: 'Research Integrity Agent', phase: 8, description: 'Detects suspicious records and risk flags', status: 'idle' },
-    { name: 'Citation Metrics Agent', phase: 9, description: 'Tracks citations, h-index, and i10-index', status: 'idle' },
-    { name: 'Verification & Evidence Agent', phase: 6, description: 'Validates evidence chains and verification state', status: 'idle' },
-    { name: 'Human Review Agent', phase: 10, description: 'Creates review queues for human decisions', status: 'idle' },
-    { name: 'Reporting Agent', phase: 14, description: 'Generates reports and accreditation evidence', status: 'idle' },
-    { name: 'Research Assistant', phase: 15, description: 'Natural language research knowledge base', status: 'idle' },
+    { name: 'Faculty Identity', phase: 2, description: 'Manages faculty profiles and external identifiers', status: 'idle' },
+    { name: 'Affiliation Intelligence', phase: 2, description: 'Learns institutional affiliation variants', status: 'idle' },
+    { name: 'Publication Discovery', phase: 4, description: 'Searches research sources for new publications', status: 'idle' },
+    { name: 'Metadata Normalization', phase: 5, description: 'Standardizes publication metadata', status: 'idle' },
+    { name: 'Deduplication', phase: 5, description: 'Identifies and merges duplicate publications', status: 'idle' },
+    { name: 'Faculty Attribution', phase: 6, description: 'Links publications to VFSTR faculty', status: 'idle' },
+    { name: 'Metadata Enrichment', phase: 7, description: 'Adds journal quality metrics and indexing data', status: 'idle' },
+    { name: 'Research Integrity', phase: 8, description: 'Detects suspicious records and risk flags', status: 'idle' },
+    { name: 'Citation Metrics', phase: 9, description: 'Tracks citations, h-index, and i10-index', status: 'idle' },
+    { name: 'Verification & Evidence', phase: 6, description: 'Validates evidence chains and verification state', status: 'idle' },
+    { name: 'Human Review & Verification', phase: 10, description: 'Creates review queues for human decisions', status: 'idle' },
+    { name: 'Reporting & Accreditation', phase: 14, description: 'Generates reports and accreditation evidence', status: 'idle' },
+    { name: 'Research Intelligence Assistant', phase: 15, description: 'Natural language research knowledge base', status: 'idle' },
   ]
 
   return (
@@ -22,10 +22,10 @@ export default function AgentCenter() {
           className="text-2xl font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
-          Agent Activity Center
+          Research Services Activity Center
         </h2>
         <p style={{ color: 'var(--color-text-secondary)' }}>
-          Monitor the 13 specialized agents powering the research intelligence platform
+          Monitor the specialized intelligence services powering the research platform
         </p>
       </div>
 
@@ -43,13 +43,13 @@ export default function AgentCenter() {
                 </h3>
               </div>
               <span
-                className="text-xs px-2 py-0.5 rounded"
+                className="text-xs px-2 py-0.5 rounded font-medium"
                 style={{
                   background: 'var(--color-surface-800)',
                   color: 'var(--color-text-muted)',
                 }}
               >
-                Phase {agent.phase}
+                Active Service
               </span>
             </div>
 

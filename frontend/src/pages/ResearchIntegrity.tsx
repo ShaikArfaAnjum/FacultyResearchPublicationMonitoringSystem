@@ -106,7 +106,7 @@ export default function ResearchIntegrity() {
         <div>
           <div className="flex items-center gap-2">
             <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-100 text-rose-800">
-              Agent 8: Research Integrity
+              Research Integrity
             </span>
             <span className="text-xs text-gray-500 font-medium">Quality Assurance & Risk Auditing</span>
           </div>
@@ -194,7 +194,7 @@ export default function ResearchIntegrity() {
       <div className="bg-gradient-to-r from-blue-900 to-indigo-950 rounded-2xl p-6 text-white shadow-md">
         <div className="flex items-center gap-2 mb-2">
           <Info size={18} className="text-blue-300" />
-          <h3 className="font-bold text-base text-white">Automated Integrity & Verification Protocol (Agent 8 & 10)</h3>
+          <h3 className="font-bold text-base text-white">Automated Integrity & Verification Protocol</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-xs text-blue-100">
           <div className="bg-white/10 p-3.5 rounded-xl border border-white/10">

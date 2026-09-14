@@ -25,7 +25,7 @@ export default function PublicationExplorer() {
           className="text-sm"
           style={{ color: 'var(--color-text-muted)' }}
         >
-          Phase 4: Publication Discovery → Phase 5: Normalization + Deduplication
+          Automated Publication Discovery → Normalization & Deduplication Pipeline
         </p>
       </div>
     </div>

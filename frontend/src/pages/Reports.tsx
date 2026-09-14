@@ -200,7 +200,7 @@ export default function Reports() {
         <div>
           <div className="flex items-center gap-2">
             <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-800">
-              Agent 12: Reporting & Accreditation
+              Reporting & Accreditation
             </span>
             <span className="text-xs text-gray-500 font-medium">Authoritative Intelligence Packages</span>
           </div>

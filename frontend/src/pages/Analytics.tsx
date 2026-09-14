@@ -154,17 +154,17 @@ export default function Analytics() {
   return (
     <div className="space-y-8 animate-fade-in pb-12">
       {/* Top Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200/80 dark:border-gray-800/80 pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-5">
         <div>
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-gradient-to-tr from-indigo-600 to-indigo-500 rounded-xl text-white shadow-md shadow-indigo-500/20">
               <Building2 className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
+              <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
                 Department Analytics & Intelligence
               </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+              <p className="text-sm text-slate-600 font-medium mt-0.5">
                 Real-time research performance, publication trajectories, domain clusters, and cross-departmental benchmarking.
               </p>
             </div>
@@ -174,8 +174,8 @@ export default function Analytics() {
         {/* Action Bar / Department Selector */}
         <div className="flex items-center gap-3">
           {isAdmin ? (
-            <div className="flex items-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-1 shadow-sm">
-              <span className="text-xs font-semibold px-2.5 text-gray-400 flex items-center gap-1">
+            <div className="flex items-center bg-white border border-slate-200 rounded-xl p-1 shadow-xs">
+              <span className="text-xs font-bold px-2.5 text-slate-500 flex items-center gap-1">
                 <Filter className="w-3.5 h-3.5" /> DEPT:
               </span>
               <div className="flex gap-1 overflow-x-auto">
@@ -183,10 +183,10 @@ export default function Analytics() {
                   <button
                     key={dept}
                     onClick={() => handleDepartmentChange(dept)}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${
                       selectedDept.toUpperCase() === dept.toUpperCase()
-                        ? 'bg-indigo-600 text-white shadow-sm'
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? 'bg-indigo-600 text-white shadow-xs'
+                        : 'text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     {dept}
@@ -195,9 +195,9 @@ export default function Analytics() {
               </div>
             </div>
           ) : (
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-xl">
-              <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-              <span className="text-xs font-bold text-indigo-700 dark:text-indigo-300">
+            <div className="flex items-center gap-2 px-3.5 py-2 bg-indigo-50 border border-indigo-200 rounded-xl shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
+              <span className="text-xs font-bold text-indigo-900">
                 Department: {deptData?.department || 'Assigned Department'}
               </span>
             </div>
@@ -206,7 +206,7 @@ export default function Analytics() {
           <button
             onClick={() => fetchData()}
             disabled={loading}
-            className="p-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition shadow-sm disabled:opacity-50"
+            className="p-2.5 bg-white border border-slate-200 text-slate-700 rounded-xl hover:bg-slate-50 transition shadow-xs disabled:opacity-50"
             title="Refresh Intelligence Data"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-indigo-600' : ''}`} />
@@ -215,7 +215,7 @@ export default function Analytics() {
       </div>
 
       {/* Navigation Sub-Tabs */}
-      <div className="flex items-center gap-2 border-b border-gray-200 dark:border-gray-800">
+      <div className="flex items-center gap-2 border-b border-slate-200">
         {[
           { key: 'overview', label: 'Department Overview', icon: Layers },
           { key: 'leaderboard', label: 'Faculty Performance Roster', icon: Users },
@@ -228,10 +228,10 @@ export default function Analytics() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`flex items-center gap-2 px-4 py-3 text-sm font-semibold transition-all border-b-2 -mb-px ${
+              className={`flex items-center gap-2 px-4 py-3 text-sm font-bold transition-all border-b-2 -mb-px ${
                 isActive
-                  ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/20 rounded-t-lg'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
+                  ? 'border-indigo-600 text-indigo-700 bg-indigo-50/70 rounded-t-lg'
+                  : 'border-transparent text-slate-600 hover:text-slate-900'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -244,81 +244,81 @@ export default function Analytics() {
       {/* Primary KPI Row */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {/* Total Faculty */}
-        <div className="glass-card p-5 bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60 rounded-2xl shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Faculty Strength</span>
-            <div className="p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl">
+        <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs hover:shadow-md transition">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Faculty Strength</span>
+            <div className="p-2 bg-blue-50 text-blue-600 rounded-xl">
               <Users className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-gray-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900">
             {loading ? '...' : deptData?.summary.total_faculty || 0}
           </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
+          <div className="text-xs text-slate-600 font-semibold mt-1 flex items-center gap-1">
             <span>In {deptData?.department || selectedDept}</span>
           </div>
         </div>
 
         {/* Total Publications */}
-        <div className="glass-card p-5 bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60 rounded-2xl shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Total Publications</span>
-            <div className="p-2 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl">
+        <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs hover:shadow-md transition">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Total Publications</span>
+            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
               <BookOpen className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-gray-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900">
             {loading ? '...' : deptData?.summary.total_publications || 0}
           </div>
-          <div className="text-xs text-emerald-600 dark:text-emerald-400 font-medium mt-1">
+          <div className="text-xs text-emerald-700 font-bold mt-1">
             {deptData?.summary.verified_publications || 0} verified records
           </div>
         </div>
 
         {/* Citation Impact */}
-        <div className="glass-card p-5 bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60 rounded-2xl shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Total Citations</span>
-            <div className="p-2 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-xl">
+        <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs hover:shadow-md transition">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Total Citations</span>
+            <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <TrendingUp className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-gray-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900">
             {loading ? '...' : deptData?.summary.total_citations || 0}
           </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          <div className="text-xs text-slate-600 font-semibold mt-1">
             Avg {deptData?.summary.avg_citations_per_faculty || 0} / faculty
           </div>
         </div>
 
         {/* Verification Rate */}
-        <div className="glass-card p-5 bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60 rounded-2xl shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Verification Rate</span>
-            <div className="p-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-xl">
+        <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs hover:shadow-md transition">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Verification Rate</span>
+            <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <ShieldCheck className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-gray-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900">
             {loading ? '...' : `${deptData?.summary.verification_rate || 0}%`}
           </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          <div className="text-xs text-slate-600 font-semibold mt-1">
             Integrity confidence index
           </div>
         </div>
 
         {/* Productivity (Avg Pubs/Faculty) */}
-        <div className="glass-card p-5 bg-white/70 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/60 rounded-2xl shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between text-gray-500 dark:text-gray-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Productivity</span>
-            <div className="p-2 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl">
+        <div className="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs hover:shadow-md transition">
+          <div className="flex items-center justify-between text-slate-500 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Productivity</span>
+            <div className="p-2 bg-purple-50 text-purple-600 rounded-xl">
               <Award className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-gray-900 dark:text-white">
+          <div className="text-2xl font-black text-slate-900">
             {loading ? '...' : deptData?.summary.avg_publications_per_faculty || 0}
           </div>
-          <div className="text-xs text-purple-600 dark:text-purple-400 font-medium mt-1">
+          <div className="text-xs text-purple-700 font-bold mt-1">
             Pubs / faculty member
           </div>
         </div>
@@ -330,18 +330,18 @@ export default function Analytics() {
           {/* Main Visual Trajectory Section */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Trajectory Bar Chart */}
-            <div className="lg:col-span-2 glass-card p-6 bg-white/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/70 rounded-2xl shadow-sm">
+            <div className="lg:col-span-2 p-6 bg-white border border-slate-200 rounded-2xl shadow-xs">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-indigo-500" />
+                  <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-indigo-600" />
                     {deptData?.department} Research Publication Trajectory
                   </h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">
                     Yearly verified publications output and citation growth.
                   </p>
                 </div>
-                <div className="px-3 py-1 text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg">
+                <div className="px-3 py-1 text-xs font-bold bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-lg">
                   {deptData?.publication_trends.length || 0} active years
                 </div>
               </div>
@@ -350,15 +350,15 @@ export default function Analytics() {
                 {deptData && deptData.publication_trends.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={deptData.publication_trends} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-                      <XAxis dataKey="year" stroke="#9CA3AF" fontSize={12} tickLine={false} />
-                      <YAxis stroke="#9CA3AF" fontSize={12} tickLine={false} />
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+                      <XAxis dataKey="year" stroke="#64748B" fontSize={12} tickLine={false} />
+                      <YAxis stroke="#64748B" fontSize={12} tickLine={false} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: '#1F2937',
-                          borderColor: '#374151',
+                          backgroundColor: '#0F172A',
+                          borderColor: '#1E293B',
                           borderRadius: '0.75rem',
-                          color: '#fff',
+                          color: '#FFFFFF',
                           fontSize: '12px'
                         }}
                       />
@@ -368,7 +368,7 @@ export default function Analytics() {
                     </BarChart>
                   </ResponsiveContainer>
                 ) : (
-                  <div className="flex items-center justify-center h-full text-sm text-gray-400">
+                  <div className="flex items-center justify-center h-full text-sm text-slate-400 font-medium">
                     No publication trend data available for this department.
                   </div>
                 )}
@@ -376,28 +376,28 @@ export default function Analytics() {
             </div>
 
             {/* Quality & Integrity Mix */}
-            <div className="glass-card p-6 bg-white/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/70 rounded-2xl shadow-sm flex flex-col justify-between">
+            <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-xs flex flex-col justify-between">
               <div>
-                <h3 className="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-1">
-                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2 mb-1">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
                   Verification & Evidence Status
                 </h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-5">
-                  Multi-agent provenance and attribution distribution.
+                <p className="text-xs text-slate-500 font-medium mb-5">
+                  Multi-source provenance and attribution distribution.
                 </p>
 
                 <div className="space-y-3.5">
                   {/* Verified */}
                   <div>
                     <div className="flex justify-between text-xs font-semibold mb-1">
-                      <span className="text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+                      <span className="text-emerald-800 font-bold flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-emerald-500" /> Verified
                       </span>
-                      <span className="text-gray-700 dark:text-gray-300 font-bold">
+                      <span className="text-slate-900 font-bold">
                         {deptData?.verification_breakdown.verified || 0}
                       </span>
                     </div>
-                    <div className="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                       <div
                         className="bg-emerald-500 h-full rounded-full transition-all duration-500"
                         style={{
@@ -410,14 +410,14 @@ export default function Analytics() {
                   {/* Partially Verified */}
                   <div>
                     <div className="flex justify-between text-xs font-semibold mb-1">
-                      <span className="text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
+                      <span className="text-blue-800 font-bold flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-blue-500" /> Partially Verified
                       </span>
-                      <span className="text-gray-700 dark:text-gray-300 font-bold">
+                      <span className="text-slate-900 font-bold">
                         {deptData?.verification_breakdown.partially_verified || 0}
                       </span>
                     </div>
-                    <div className="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                       <div
                         className="bg-blue-500 h-full rounded-full transition-all duration-500"
                         style={{
@@ -430,14 +430,14 @@ export default function Analytics() {
                   {/* Needs Review */}
                   <div>
                     <div className="flex justify-between text-xs font-semibold mb-1">
-                      <span className="text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+                      <span className="text-amber-800 font-bold flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-amber-500" /> Review Queue
                       </span>
-                      <span className="text-gray-700 dark:text-gray-300 font-bold">
+                      <span className="text-slate-900 font-bold">
                         {deptData?.verification_breakdown.needs_review || 0}
                       </span>
                     </div>
-                    <div className="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                       <div
                         className="bg-amber-500 h-full rounded-full transition-all duration-500"
                         style={{
@@ -447,19 +447,19 @@ export default function Analytics() {
                     </div>
                   </div>
 
-                  {/* Unverified / Discovered */}
+                  {/* Raw Discovered */}
                   <div>
                     <div className="flex justify-between text-xs font-semibold mb-1">
-                      <span className="text-gray-600 dark:text-gray-400 flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-gray-400" /> Raw Discovered
+                      <span className="text-slate-700 font-bold flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-slate-400" /> Raw Discovered
                       </span>
-                      <span className="text-gray-700 dark:text-gray-300 font-bold">
+                      <span className="text-slate-900 font-bold">
                         {deptData?.verification_breakdown.unverified || 0}
                       </span>
                     </div>
-                    <div className="w-full bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                       <div
-                        className="bg-gray-400 h-full rounded-full transition-all duration-500"
+                        className="bg-slate-400 h-full rounded-full transition-all duration-500"
                         style={{
                           width: `${((deptData?.verification_breakdown.unverified || 0) / Math.max(deptData?.summary.total_publications || 1, 1)) * 100}%`
                         }}
@@ -469,11 +469,11 @@ export default function Analytics() {
                 </div>
               </div>
 
-              <div className="mt-5 p-3.5 bg-gray-50 dark:bg-gray-900/40 border border-gray-200/60 dark:border-gray-700/60 rounded-xl flex items-center justify-between">
-                <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
+              <div className="mt-5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-700">
                   Total Managed Records
                 </span>
-                <span className="text-sm font-black text-indigo-600 dark:text-indigo-400">
+                <span className="text-sm font-black text-indigo-700">
                   {deptData?.summary.total_publications} Works
                 </span>
               </div>
@@ -483,51 +483,51 @@ export default function Analytics() {
           {/* Department Top Roster & Collaboration Highlights */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Top Researchers Preview */}
-            <div className="lg:col-span-2 glass-card p-6 bg-white/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/70 rounded-2xl shadow-sm">
+            <div className="lg:col-span-2 p-6 bg-white border border-slate-200 rounded-2xl shadow-xs">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                    <Award className="w-4 h-4 text-amber-500" />
+                  <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                    <Award className="w-4 h-4 text-amber-600" />
                     Top Research Faculty in {deptData?.department}
                   </h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">
                     Ranked by verified publications and citation contributions.
                   </p>
                 </div>
                 <button
                   onClick={() => setActiveTab('leaderboard')}
-                  className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+                  className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 transition"
                 >
                   View Full Roster <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              <div className="divide-y divide-gray-100 dark:divide-gray-700/60">
+              <div className="divide-y divide-slate-100">
                 {deptData?.faculty_leaderboard.slice(0, 4).map((fac, idx) => (
                   <div
                     key={fac.id}
                     onClick={() => navigate(`/faculty/${fac.id}`)}
-                    className="py-3.5 flex items-center justify-between hover:bg-gray-50/70 dark:hover:bg-gray-750 p-2 rounded-xl transition cursor-pointer"
+                    className="py-3.5 flex items-center justify-between hover:bg-slate-50 p-2.5 rounded-xl transition cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs ${
-                        idx === 0 ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' :
-                        idx === 1 ? 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-300' :
-                        idx === 2 ? 'bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300' :
-                        'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
+                        idx === 0 ? 'bg-amber-100 text-amber-800 border border-amber-200' :
+                        idx === 1 ? 'bg-slate-200 text-slate-800 border border-slate-300' :
+                        idx === 2 ? 'bg-orange-100 text-orange-800 border border-orange-200' :
+                        'bg-slate-100 text-slate-700 border border-slate-200'
                       }`}>
                         #{idx + 1}
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
+                        <div className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
                           {fac.name}
                           {fac.is_current_user && (
-                            <span className="text-[10px] px-1.5 py-0.5 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300 rounded font-semibold">
+                            <span className="text-[10px] px-1.5 py-0.5 bg-indigo-100 text-indigo-800 border border-indigo-200 rounded font-bold">
                               You
                             </span>
                           )}
                         </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                        <div className="text-xs text-slate-500 font-medium">
                           {fac.designation}
                         </div>
                       </div>
@@ -535,14 +535,14 @@ export default function Analytics() {
 
                     <div className="flex items-center gap-4 text-right">
                       <div>
-                        <div className="text-sm font-bold text-indigo-600 dark:text-indigo-400">
+                        <div className="text-sm font-bold text-indigo-700">
                           {fac.publication_count} pubs
                         </div>
-                        <div className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                        <div className="text-xs text-emerald-700 font-semibold">
                           {fac.verified_count} verified
                         </div>
                       </div>
-                      <ArrowUpRight className="w-4 h-4 text-gray-400" />
+                      <ArrowUpRight className="w-4 h-4 text-slate-400" />
                     </div>
                   </div>
                 ))}
@@ -550,36 +550,36 @@ export default function Analytics() {
             </div>
 
             {/* Collaboration & Cross-Department Links */}
-            <div className="glass-card p-6 bg-white/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/70 rounded-2xl shadow-sm flex flex-col justify-between">
+            <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-xs flex flex-col justify-between">
               <div>
-                <h3 className="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-1">
-                  <GitBranch className="w-4 h-4 text-purple-500" />
+                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2 mb-1">
+                  <GitBranch className="w-4 h-4 text-purple-600" />
                   Collaboration Interlocks
                 </h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+                <p className="text-xs text-slate-500 font-medium mb-4">
                   Intra-departmental & inter-departmental co-authorship.
                 </p>
 
                 <div className="grid grid-cols-2 gap-3 mb-5">
-                  <div className="p-3 bg-purple-50/60 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-800/40 rounded-xl text-center">
-                    <div className="text-xl font-black text-purple-700 dark:text-purple-300">
+                  <div className="p-3.5 bg-purple-50 border border-purple-200 rounded-xl text-center">
+                    <div className="text-xl font-black text-purple-900">
                       {deptData?.collaboration_insights.internal_coauthorships || 0}
                     </div>
-                    <div className="text-[11px] font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-tight">
+                    <div className="text-[11px] font-bold text-purple-700 uppercase tracking-tight mt-0.5">
                       Internal Links
                     </div>
                   </div>
-                  <div className="p-3 bg-blue-50/60 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-800/40 rounded-xl text-center">
-                    <div className="text-xl font-black text-blue-700 dark:text-blue-300">
+                  <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl text-center">
+                    <div className="text-xl font-black text-blue-900">
                       {deptData?.collaboration_insights.cross_department_links || 0}
                     </div>
-                    <div className="text-[11px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-tight">
+                    <div className="text-[11px] font-bold text-blue-700 uppercase tracking-tight mt-0.5">
                       Cross-Dept Ties
                     </div>
                   </div>
                 </div>
 
-                <div className="text-xs font-bold text-gray-700 dark:text-gray-300 mb-2">
+                <div className="text-xs font-bold text-slate-800 mb-2">
                   Top Partner Departments:
                 </div>
                 <div className="space-y-2">
@@ -587,21 +587,21 @@ export default function Analytics() {
                     deptData.collaboration_insights.top_partner_departments.map(p => (
                       <div
                         key={p.department}
-                        className="flex items-center justify-between text-xs p-2 bg-gray-50 dark:bg-gray-900/40 rounded-lg border border-gray-200/50 dark:border-gray-800"
+                        className="flex items-center justify-between text-xs p-2.5 bg-slate-50 rounded-lg border border-slate-200"
                       >
-                        <span className="font-semibold text-gray-800 dark:text-gray-200">{p.department}</span>
-                        <span className="font-bold text-indigo-600 dark:text-indigo-400">{p.collaborations} co-authored</span>
+                        <span className="font-bold text-slate-800">{p.department}</span>
+                        <span className="font-bold text-indigo-700">{p.collaborations} co-authored</span>
                       </div>
                     ))
                   ) : (
-                    <div className="text-xs text-gray-400 italic">No cross-department linkages found.</div>
+                    <div className="text-xs text-slate-500 italic">No cross-department linkages found.</div>
                   )}
                 </div>
               </div>
 
               <button
                 onClick={() => navigate('/collaborations')}
-                className="mt-4 w-full py-2.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 rounded-xl transition flex items-center justify-center gap-1.5"
+                className="mt-4 w-full py-2.5 text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-xl transition flex items-center justify-center gap-1.5"
               >
                 Open Collaboration Graph <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
@@ -612,89 +612,89 @@ export default function Analytics() {
 
       {/* Tab 2: Full Leaderboard */}
       {activeTab === 'leaderboard' && (
-        <div className="glass-card p-6 bg-white/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/70 rounded-2xl shadow-sm space-y-5">
+        <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                 <Users className="w-5 h-5 text-indigo-600" />
                 Faculty Research Performance Roster — {deptData?.department}
               </h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+              <p className="text-xs text-slate-500 font-medium mt-0.5">
                 All {filteredFaculty.length} registered faculty ranked by publication productivity and verification integrity.
               </p>
             </div>
 
             <div className="relative w-full sm:w-64">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search faculty or domain..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-9 pr-4 py-2 text-xs bg-white border border-slate-300 rounded-xl text-slate-900 placeholder:text-slate-400 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto border border-slate-200 rounded-xl">
             <table className="w-full text-left text-xs">
-              <thead className="bg-gray-50 dark:bg-gray-900/60 text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold border-b border-gray-200 dark:border-gray-700">
+              <thead className="bg-slate-100 text-slate-700 uppercase tracking-wider font-bold border-b border-slate-200">
                 <tr>
-                  <th className="py-3 px-4">Rank & Faculty</th>
-                  <th className="py-3 px-4">Designation</th>
-                  <th className="py-3 px-4">Total Output</th>
-                  <th className="py-3 px-4">Verified Works</th>
-                  <th className="py-3 px-4">Total Citations</th>
-                  <th className="py-3 px-4">Integrity Index</th>
-                  <th className="py-3 px-4">Top Domains</th>
-                  <th className="py-3 px-4 text-right">Action</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Rank & Faculty</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Designation</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Total Output</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Verified Works</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Total Citations</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Integrity Index</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Top Domains</th>
+                  <th className="py-3 px-4 font-bold text-slate-700 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              <tbody className="divide-y divide-slate-100">
                 {filteredFaculty.map((fac, idx) => (
                   <tr
                     key={fac.id}
-                    className={`hover:bg-gray-50/80 dark:hover:bg-gray-750 transition ${
-                      fac.is_current_user ? 'bg-indigo-50/40 dark:bg-indigo-950/20' : ''
+                    className={`hover:bg-slate-50 transition ${
+                      fac.is_current_user ? 'bg-indigo-50/50' : ''
                     }`}
                   >
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
-                        <span className="font-mono font-bold text-gray-400 text-xs">#{idx + 1}</span>
+                        <span className="font-mono font-bold text-slate-500 text-xs">#{idx + 1}</span>
                         <div>
-                          <div className="font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
+                          <div className="font-bold text-slate-900 flex items-center gap-1.5">
                             {fac.name}
                             {fac.is_current_user && (
-                              <span className="text-[10px] px-1.5 py-0.2 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300 rounded font-semibold">
+                              <span className="text-[10px] px-1.5 py-0.5 bg-indigo-100 text-indigo-800 border border-indigo-200 rounded font-bold">
                                 You
                               </span>
                             )}
                           </div>
-                          <div className="text-[11px] text-gray-500 dark:text-gray-400">{fac.email}</div>
+                          <div className="text-[11px] text-slate-500 font-medium">{fac.email}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="py-3.5 px-4 text-gray-700 dark:text-gray-300 font-medium">
+                    <td className="py-3.5 px-4 text-slate-700 font-medium">
                       {fac.designation}
                     </td>
-                    <td className="py-3.5 px-4 font-bold text-gray-900 dark:text-white">
+                    <td className="py-3.5 px-4 font-bold text-slate-900">
                       {fac.publication_count}
                     </td>
-                    <td className="py-3.5 px-4 font-bold text-emerald-600 dark:text-emerald-400">
+                    <td className="py-3.5 px-4 font-bold text-emerald-700">
                       {fac.verified_count}
                     </td>
-                    <td className="py-3.5 px-4 font-bold text-amber-600 dark:text-amber-400">
+                    <td className="py-3.5 px-4 font-bold text-amber-700">
                       {fac.citations}
                     </td>
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-2">
-                        <div className="w-16 bg-gray-100 dark:bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                        <div className="w-16 bg-slate-200 h-1.5 rounded-full overflow-hidden">
                           <div
                             className="bg-indigo-600 h-full rounded-full"
                             style={{ width: `${fac.verification_rate}%` }}
                           />
                         </div>
-                        <span className="font-semibold text-gray-700 dark:text-gray-300">
+                        <span className="font-bold text-slate-800">
                           {fac.verification_rate}%
                         </span>
                       </div>
@@ -704,7 +704,7 @@ export default function Analytics() {
                         {fac.topics.map(t => (
                           <span
                             key={t}
-                            className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md text-[10px] font-medium"
+                            className="px-2 py-0.5 bg-slate-100 border border-slate-200 text-slate-800 rounded-md text-[10px] font-semibold"
                           >
                             {t}
                           </span>
@@ -714,7 +714,7 @@ export default function Analytics() {
                     <td className="py-3.5 px-4 text-right">
                       <button
                         onClick={() => navigate(`/faculty/${fac.id}`)}
-                        className="px-3 py-1.5 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 font-semibold rounded-lg transition"
+                        className="px-3 py-1.5 bg-indigo-50 border border-indigo-200 text-indigo-700 hover:bg-indigo-100 font-bold rounded-lg transition"
                       >
                         Profile
                       </button>
@@ -730,13 +730,13 @@ export default function Analytics() {
       {/* Tab 3: Research Specializations */}
       {activeTab === 'domains' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="glass-card p-6 bg-white/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/70 rounded-2xl shadow-sm space-y-4">
+          <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-4">
             <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-indigo-500" />
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-indigo-600" />
                 Department Research Domain Distribution
               </h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+              <p className="text-xs text-slate-500 font-medium mt-0.5">
                 Core specializations derived from faculty research profiles and publication keywords.
               </p>
             </div>
@@ -745,12 +745,12 @@ export default function Analytics() {
               {deptData?.research_domains.map(d => (
                 <div key={d.name} className="space-y-1.5">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-gray-800 dark:text-gray-200">{d.name}</span>
-                    <span className="font-semibold text-indigo-600 dark:text-indigo-400">
+                    <span className="font-bold text-slate-900">{d.name}</span>
+                    <span className="font-bold text-indigo-700">
                       {d.count} researchers ({d.percentage}%)
                     </span>
                   </div>
-                  <div className="w-full bg-gray-100 dark:bg-gray-700 h-2.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
                     <div
                       className="bg-gradient-to-r from-indigo-500 to-purple-600 h-full rounded-full transition-all duration-500"
                       style={{ width: `${d.percentage}%` }}
@@ -761,31 +761,31 @@ export default function Analytics() {
             </div>
           </div>
 
-          <div className="glass-card p-6 bg-white/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/70 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-xs flex flex-col justify-between">
             <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-1">
-                <Sparkles className="w-4 h-4 text-amber-500" />
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2 mb-1">
+                <Sparkles className="w-4 h-4 text-amber-600" />
                 Emerging Interdisciplinary Opportunities
               </h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+              <p className="text-xs text-slate-500 font-medium mb-4">
                 High-potential collaboration and grant tracks tailored to {deptData?.department}.
               </p>
 
               <div className="space-y-3">
-                <div className="p-4 bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-800/40 rounded-xl">
-                  <div className="text-xs font-bold text-indigo-900 dark:text-indigo-300">
+                <div className="p-4 bg-indigo-50 border border-indigo-200 rounded-xl">
+                  <div className="text-xs font-bold text-indigo-950">
                     Cross-Disciplinary AI & System Engineering
                   </div>
-                  <div className="text-xs text-indigo-700 dark:text-indigo-400 mt-1">
+                  <div className="text-xs text-indigo-800 mt-1 font-medium">
                     Aligns with CSE machine learning specializations and EEE/MECH automation domains.
                   </div>
                 </div>
 
-                <div className="p-4 bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-800/40 rounded-xl">
-                  <div className="text-xs font-bold text-emerald-900 dark:text-emerald-300">
+                <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
+                  <div className="text-xs font-bold text-emerald-950">
                     High-Impact Scopus / WoS Q1 Publication Drive
                   </div>
-                  <div className="text-xs text-emerald-700 dark:text-emerald-400 mt-1">
+                  <div className="text-xs text-emerald-800 mt-1 font-medium">
                     {deptData?.summary.q1_q2_share}% of current works are Q1/Q2 indexed. Target: 65% across departmental cohorts.
                   </div>
                 </div>
@@ -794,7 +794,7 @@ export default function Analytics() {
 
             <button
               onClick={() => navigate('/opportunities')}
-              className="mt-6 w-full py-2.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm"
+              className="mt-6 w-full py-2.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition flex items-center justify-center gap-1.5 shadow-xs"
             >
               Browse Tailored Grants & Calls <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
@@ -804,73 +804,73 @@ export default function Analytics() {
 
       {/* Tab 4: Institutional Comparisons */}
       {activeTab === 'comparisons' && (
-        <div className="glass-card p-6 bg-white/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/70 rounded-2xl shadow-sm space-y-6">
+        <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-6">
           <div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
               <GitBranch className="w-5 h-5 text-indigo-600" />
               Institutional Cross-Departmental Benchmarking Matrix
             </h3>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+            <p className="text-xs text-slate-500 font-medium mt-0.5">
               Comprehensive comparison of research output, citations, productivity, and top specializations across all departments.
             </p>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto border border-slate-200 rounded-xl">
             <table className="w-full text-left text-xs">
-              <thead className="bg-gray-50 dark:bg-gray-900/60 text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold border-b border-gray-200 dark:border-gray-700">
+              <thead className="bg-slate-100 text-slate-700 uppercase tracking-wider font-bold border-b border-slate-200">
                 <tr>
-                  <th className="py-3 px-4">Department</th>
-                  <th className="py-3 px-4">Faculty Count</th>
-                  <th className="py-3 px-4">Publication Output</th>
-                  <th className="py-3 px-4">Verified Works</th>
-                  <th className="py-3 px-4">Total Citations</th>
-                  <th className="py-3 px-4">Productivity (Pubs/Fac)</th>
-                  <th className="py-3 px-4">Verification Rate</th>
-                  <th className="py-3 px-4">Primary Research Domain</th>
-                  <th className="py-3 px-4 text-right">Drill-Down</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Department</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Faculty Count</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Publication Output</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Verified Works</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Total Citations</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Productivity (Pubs/Fac)</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Verification Rate</th>
+                  <th className="py-3 px-4 font-bold text-slate-700">Primary Research Domain</th>
+                  <th className="py-3 px-4 font-bold text-slate-700 text-right">Drill-Down</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+              <tbody className="divide-y divide-slate-100">
                 {comparisons.map((c) => (
                   <tr
                     key={c.department}
-                    className={`hover:bg-gray-50/80 dark:hover:bg-gray-750 transition ${
+                    className={`hover:bg-slate-50 transition ${
                       c.department.toUpperCase() === selectedDept.toUpperCase()
-                        ? 'bg-indigo-50/40 dark:bg-indigo-950/20 font-semibold'
+                        ? 'bg-indigo-50/50 font-semibold'
                         : ''
                     }`}
                   >
-                    <td className="py-3.5 px-4 font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-indigo-500" />
+                    <td className="py-3.5 px-4 font-bold text-slate-900 flex items-center gap-2">
+                      <Building2 className="w-4 h-4 text-indigo-600" />
                       {c.department}
                     </td>
-                    <td className="py-3.5 px-4 text-gray-700 dark:text-gray-300">
+                    <td className="py-3.5 px-4 text-slate-700 font-medium">
                       {c.faculty_count}
                     </td>
-                    <td className="py-3.5 px-4 font-bold text-gray-900 dark:text-white">
+                    <td className="py-3.5 px-4 font-bold text-slate-900">
                       {c.publication_count}
                     </td>
-                    <td className="py-3.5 px-4 font-bold text-emerald-600 dark:text-emerald-400">
+                    <td className="py-3.5 px-4 font-bold text-emerald-700">
                       {c.verified_count}
                     </td>
-                    <td className="py-3.5 px-4 font-bold text-amber-600 dark:text-amber-400">
+                    <td className="py-3.5 px-4 font-bold text-amber-700">
                       {c.total_citations}
                     </td>
-                    <td className="py-3.5 px-4 text-purple-600 dark:text-purple-400 font-bold">
+                    <td className="py-3.5 px-4 text-purple-700 font-bold">
                       {c.avg_pubs_per_faculty}
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 rounded font-semibold text-[11px]">
+                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-200 rounded font-bold text-[11px]">
                         {c.verification_rate}%
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-gray-600 dark:text-gray-300 font-medium">
+                    <td className="py-3.5 px-4 text-slate-700 font-medium">
                       {c.top_domain}
                     </td>
                     <td className="py-3.5 px-4 text-right">
                       <button
                         onClick={() => handleDepartmentChange(c.department)}
-                        className="px-3 py-1.5 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition"
+                        className="px-3 py-1.5 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition"
                       >
                         Inspect
                       </button>

@@ -323,9 +323,9 @@ export default function VerificationQueue() {
         <div>
           <div className="flex items-center gap-2">
             <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-800">
-              Phase 11: Human Review Agent
+              Human Review & Verification
             </span>
-            <span className="text-xs text-gray-500 font-medium">System Agent 11</span>
+            <span className="text-xs text-gray-500 font-medium">Quality Assurance & Attribution Review</span>
           </div>
           <h1 className="text-2xl font-extrabold text-gray-900 mt-2 flex items-center gap-2">
             <CheckSquare className="text-blue-600" size={28} />

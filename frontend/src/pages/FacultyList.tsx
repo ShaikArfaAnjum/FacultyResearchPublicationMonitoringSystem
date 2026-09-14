@@ -90,7 +90,7 @@ export default function FacultyList() {
             No faculty profiles loaded yet
           </p>
           <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-            Faculty data will appear after CSV import in Phase 2
+            Faculty data will appear after CSV profile import
           </p>
         </div>
       ) : (

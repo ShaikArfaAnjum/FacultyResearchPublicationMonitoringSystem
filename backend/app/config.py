@@ -55,7 +55,12 @@ class Settings(BaseSettings):
     @property
     def database_url_property(self) -> str:
         if self.database_url:
-            return self.database_url
+            url = self.database_url
+            if url.startswith("postgres://"):
+                url = url.replace("postgres://", "postgresql+asyncpg://", 1)
+            elif url.startswith("postgresql://") and "+asyncpg" not in url:
+                url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+            return url
         return (
             f"postgresql+asyncpg://{self.postgres_user}:{self.postgres_password}"
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
@@ -65,11 +70,19 @@ class Settings(BaseSettings):
     def database_url_sync_property(self) -> str:
         """Synchronous URL for Alembic migrations."""
         if self.database_url:
-            return self.database_url.replace("+asyncpg", "").replace("+aiosqlite", "")
+            url = self.database_url
+            if url.startswith("postgres://"):
+                url = url.replace("postgres://", "postgresql://", 1)
+            return url.replace("+asyncpg", "").replace("+aiosqlite", "")
         return (
             f"postgresql://{self.postgres_user}:{self.postgres_password}"
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
         )
+
+    @property
+    def database_url_sync(self) -> str:
+        """Alias for database_url_sync_property."""
+        return self.database_url_sync_property
 
     # --- Redis ---
     redis_host: str = "localhost"
@@ -120,6 +133,13 @@ class Settings(BaseSettings):
     # --- Institution ---
     institution_name: str = "Vignan's Foundation for Science, Technology & Research"
     institution_short: str = "VFSTR"
+
+    # --- Production Bootstrap / Seeding ---
+    bootstrap_admin_email: str = "admin@vignan.ac.in"
+    bootstrap_admin_password: str = "admin"
+    bootstrap_admin_name: str = "System Administrator"
+    bootstrap_faculty_password: str = "faculty123"
+    bootstrap_seed_faculty: bool = True
 
 
 @lru_cache
