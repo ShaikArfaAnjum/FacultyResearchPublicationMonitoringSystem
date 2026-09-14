@@ -1,0 +1,75 @@
+# =============================================================
+# Render Blueprint — Faculty Research Publication Monitoring System
+# =============================================================
+# Deploy with: Render Dashboard → New → Blueprint → Connect Repo
+# =============================================================
+
+databases:
+  - name: rfms-postgres
+    databaseName: research_monitoring
+    user: research_admin
+    plan: free
+
+services:
+  # ── Backend: FastAPI Web Service ──
+  - type: web
+    name: research-faculty-monitoring-backend
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic upgrade head && python -m app.seed.bootstrap && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DATABASE_URL
+        fromDatabase:
+          name: rfms-postgres
+          property: connectionString
+      - key: BACKEND_CORS_ORIGINS
+        sync: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: JWT_ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "30"
+      - key: JWT_REFRESH_TOKEN_EXPIRE_DAYS
+        value: "7"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OPENALEX_API_KEY
+        sync: false
+      - key: OPENALEX_EMAIL
+        sync: false
+      - key: CROSSREF_EMAIL
+        sync: false
+      - key: SEMANTIC_SCHOLAR_API_KEY
+        sync: false
+      - key: SCOPUS_API_KEY
+        sync: false
+      - key: INSTITUTION_NAME
+        value: "Vignan's Foundation for Science, Technology & Research"
+      - key: INSTITUTION_SHORT
+        value: VFSTR
+
+  # ── Frontend: React/Vite Static Site ──
+  - type: web
+    name: research-faculty-monitoring-frontend
+    runtime: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false
